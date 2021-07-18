@@ -1,0 +1,39 @@
+<partial name="_UserNav" model=@ViewBag.UserObj/>
+
+<!-- ======= Breadcrumbs ======= -->
+    <!-- End Breadcrumbs -->
+<div class="container">
+  <header class="section-header mt-4">
+          <p>All Opportunities</p>
+        </header>
+    <table>
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Organization name</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>hours</th>
+        <th>volunteers</th>
+        <th>Gender</th>
+        <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in ViewBag.AllWorks){
+        <tr>
+        <td>@item.WorkId</td>
+        <td><a href="/opportunity/@item.WorkId">@item.Name</a></td>
+        <td>@item.CreatedBy.Name</td>
+        <td>@item.StartDate.ToString("dd MMMM")</td>
+        <td>@item.EndDate.ToString("dd MMMM")</td>
+        <td>@item.NumberOfHours</td>
+        <td>@item.NumberOfVolunteers</td>
+        <td>@item.Gender</td>
+        <td><a href="/admin/delete/work/@item.WorkId" ><i class="bi bi-trash text-danger"></i></a></td>
+        </tr>
+    }
+    </tbody>
+    </table>
+</div>

@@ -1,0 +1,161 @@
+@model Organization;
+@if(ViewBag.LoggedOrg != null){ 
+  <partial name="_OrgNav"  model=@ViewBag.OrgObj />
+}else{
+  <partial name="_UserNav" model=ViewBag.UserObj/>
+}
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+    <h2>@Model.Name's Volunteering Projects</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+
+    <section id="blog" class="blog">
+     
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+                @{
+      if(Model.Projects.Count == 0){
+         <div class="empty" data-aos="fade-up" data-aos-delay="400">
+           <img src="~/assets/img/empty.svg" alt="Empty" />
+           <h1 class="h1">No Opportunities Yet!</h1>
+         </div>
+      }
+    }
+            @foreach (var item in Model.Projects)
+            {
+             <article class="entry">
+
+              <div class="entry-img">
+                <img src="~/image/@item.Picture" alt="">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="/opportunity/@item.WorkId">@item.Name</a>
+              </h2>
+
+              <div class="entry-meta"> 
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-building"></i>@Model.Name</li>
+                  <li class="d-flex align-items-center"><i class="bi bi-geo-alt-fill"></i> @item.Country, @item.City</li>
+                  <li class="d-flex align-items-center"><i class="bi bi-people-fill"></i> @item.NumberOfVolunteers Volunteers</li>
+                </ul>
+              </div>
+              <div class="entry-meta"> 
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-calendar-event"></i> @item.StartDate.ToString("dddd, dd MMMM yyyy") - @item.EndDate.ToString("dddd, dd MMMM yyyy") </li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> @item.NumberOfHours Volunteering hours</li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                    @item.Description
+                </p>
+                <div class="read-more">
+                  <a href="/opportunity/@item.WorkId">Read More</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+            }
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4">
+          @if(ViewBag.LoggedOrg != null && ViewBag.LoggedOrg == Model.OrganizationId){
+            <div class="d-flex justify-content-center align-items-center">
+                  <a class="btn button btn-lg w-100" href="/create/project">New Opportunity</a>
+              </div>
+          }
+              
+            
+
+            <div class="sidebar my-5 ">
+            @if(ViewBag.LoggedOrg != null && ViewBag.LoggedOrg == Model.OrganizationId){
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="/search" method="post">
+                  <input type="text" name="word">
+                  <button type="submit"><i class="bi bi-search" style="color:white"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+            }
+              <h3 class="sidebar-title">Date Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Founding Date</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-calendar-event"></i>@Model.FoundingDate.ToString("MMMM, yyyy")</div>
+                 </div>
+                </div>
+               <hr />
+               <h3 class="sidebar-title">More Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row ">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2" style="max-width:300px;">Email</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-envelope"></i>@Model.Email</div>
+                 </div>
+                </div>
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Phone</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-telephone"></i>@Model.Phone</div>
+                 </div>
+               </div>
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Address</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-geo-alt"></i>@Model.Address</div>
+                 </div>
+               </div>
+               
+
+              </div>
+              
+              <!-- End sidebar categories-->
+              <hr />
+              <h3 class="sidebar-title">Most Active</h3>
+              <div class="sidebar-item recent-posts">
+                @foreach(var work in ViewBag.Active){
+                  if(work.Workers.Count>0){
+                    <div class="post-item clearfix">
+                      <img src="~/image/@work.Picture" alt="">
+                      <h4><a href="/opportunity/@work.WorkId">@work.Name</a></h4>
+                      <div class="VN"> @work.Workers.Count Working Volunteers</div>
+                      <div class="VN"> @work.StartDate.ToString("dd MMMM") - @work.EndDate.ToString("dd MMMM")</div>
+                  </div>
+                  }
+                  
+                }
+                
+
+
+              </div><!-- End sidebar recent posts-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->

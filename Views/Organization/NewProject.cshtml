@@ -1,0 +1,135 @@
+@model WorkViewModels;
+<partial name="_OrgNav" model=@ViewBag.OrgObj/>
+
+<div class="container my-2">
+ <h1 class="text-center brand display-1">
+        New Opportunity
+    </h1>
+<div class="row shadow">
+<section class="p-3 col-md-5">
+    <form enctype="multipart/form-data" asp-action="NewProjectForm" asp-controller="Organization" class="h-100">
+        
+    <div class="row my-2">
+        <div class='form-group'>
+            <label asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" >
+            <span class='text-danger' asp-validation-for="Name"></span>
+        </div>
+    </div>
+        <div class='form-group  my-2'>
+            <label asp-for="Description"></label>
+            <textarea class="form-control" asp-for="Description" ></textarea>
+            <span class='text-danger' asp-validation-for="Description"></span>
+        </div>
+        <div class='form-group  my-2'>  
+        <label asp-for="Category"></label>
+        <select class="form-control" name="Category"> 
+            <option value="Health">Health</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Community">Community</option>
+            <option value="Cultural">Cultural</option>
+            <option value="Organization">Organization</option>
+            <option value="Housing">Housing</option>
+            <option value="Training">Training</option>
+            <span class='text-danger' asp-validation-for="Category"></span>
+        </select>
+        </div>
+        <div class='form-group'>
+            <label asp-for="Picture"></label>
+            <div class="custom-file">
+                <input class="form-control custom-file-input" asp-for="Picture" >
+                <label class="custom-file-input"></label>
+            </div>  
+        </div>
+        <div class="row my-2">
+            <div class="col-md-6">
+                <div class='form-group'>
+                    <label asp-for="Country"></label>
+                    <input class="form-control" asp-for="Country" >
+                    <span class='text-danger' asp-validation-for="Country"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="City"></label>
+                <input class="form-control" asp-for="City" >
+                <span class='text-danger' asp-validation-for="City"></span>
+            </div>
+        </div>
+    </div>
+     <div class='form-group  my-2'>
+        <label asp-for="Location"></label>
+        <input class="form-control" asp-for="Location" >
+        <span class='text-danger' asp-validation-for="Location"></span>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="NumberOfHours"></label>
+                <input class="form-control" asp-for="NumberOfHours" >
+                <span class='text-danger' asp-validation-for="NumberOfHours"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="NumberOfVolunteers"></label>
+                <input class="form-control" asp-for="NumberOfVolunteers" >
+                <span class='text-danger' asp-validation-for="NumberOfVolunteers"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-7">
+            <label>Gender</label> <br>
+    <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio1" value="male">
+            <label class="form-check-label" for="inlineRadio1">Male</label>
+    </div>
+        <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio2" value="female">
+            <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+        <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio1" value="Both">
+            <label class="form-check-label" for="inlineRadio1">Both</label>
+    </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class='form-group'>
+        <label asp-for="MinAge"></label>
+        <input class="form-control" asp-for="MinAge" >
+        <span class='text-danger' asp-validation-for="MinAge"></span>
+    </div>  
+        </div>
+    </div>
+        
+    <div class="form-group my-2">
+                <label asp-for="Skills"></label>
+                <textarea class="form-control" asp-for="Skills" ></textarea>
+                <span class='text-danger' asp-validation-for="Skills"></span>
+    </div>
+    
+        <div class='form-group  my-2'>
+        <label asp-for="StartDate"></label>
+        <input class="form-control" asp-for="StartDate" >
+        <span class='text-danger' asp-validation-for="StartDate"></span>
+    </div>
+    <div class='form-group  my-2'>
+        <label asp-for="EndDate"></label>
+        <input class="form-control" asp-for="EndDate" >
+        <span class='text-danger' asp-validation-for="EndDate"></span>
+    </div>
+        <div>
+            <button class='btn button my-2'>Add</button> 
+        </div>
+    </form>
+    
+</section>
+<!-- here add pic -->
+<div class="col-md-6 d-flex align-items-end con">
+    <img src="~/assets/img/newProject.svg" style="width: 700px; height: 600px; margin-left:20px"/>
+<div>
+</div>
+</div>

@@ -1,0 +1,151 @@
+<partial name="_UserNav" model=ViewBag.UserObj/>
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+    <h2>@ViewBag.UserDetails.FirstName @ViewBag.UserDetails.LastName </h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+
+    <section id="blog" class="blog">
+           
+     
+      <div class="container" >
+
+        <div class="row">
+
+          <div class="col-lg-8">
+                @{
+      if(ViewBag.UserDetails.Works.Count == 0){
+         <div class="empty" data-aos="fade-up" data-aos-delay="400">
+           <img src="~/assets/img/empty.svg" alt="Empty" />
+           <h1 class="h1">No Opportunities Yet!</h1>
+         </div>
+      }
+    }
+    <h2 class="h2">Opportunities</h2>
+      @* Start here *@
+      @foreach(var work in ViewBag.UserDetails.Works){
+      <div class="row user-card my-4 shadow">
+          <div class="col-md-4 img-wrapper">
+              <img src="~/image/@work.Work.Picture" />
+          </div>
+          <div class="col-md-6 user-card-info">
+              <h1 class="h2"><a href="/opportunity/@work.Work.WorkId">@work.Work.Name</a></h1>
+              <div class="user-card-icons">
+                <span class="d-flex justify-content-between">
+                <div><i class="bi bi-calendar-event"></i>@work.Work.StartDate.ToString("dd MMMM") - @work.Work.EndDate.ToString("dd MMMM")</div>
+                <div><i class="bi bi-clock"></i>@work.Work.NumberOfHours hours</div>
+                </span>
+                <span class="d-flex justify-content-between">
+                <div><i class="bi bi-geo-alt-fill"></i>@work.Work.Country, @work.Work.City</div>
+                <div><i class="bi bi-people-fill"></i>@work.Work.NumberOfVolunteers People</div>
+                </span>
+              </div>
+          </div>
+      </div>
+      }
+            
+
+          </div><!-- End blog entries list -->
+
+        <div class="col-lg-4">
+         
+            <div class="sidebar my-5 entries">
+            
+              <h3 class="sidebar-title">Volunteer's Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Email</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-envelope"></i>@ViewBag.UserDetails.Email</div>
+                 </div>
+                </div>
+               <hr />
+               <h3 class="sidebar-title">More Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row ">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2" style="max-width:300px;">Date Of Birth</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-calendar-event"></i>@ViewBag.UserDetails.DoB.ToString("dd MMMM yyyy")</div>
+                 </div>
+                </div>
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Phone</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-telephone"></i>@ViewBag.UserDetails.Phone</div>
+                 </div>
+               </div>
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Address</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-geo-alt"></i>@ViewBag.UserDetails.Country @ViewBag.UserDetails.City</div>
+                 </div>
+               </div>
+
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Gender</div>
+                 </div>
+                 <div class="col-md-6">
+                 @{
+                    if(ViewBag.UserDetails.Gender == "female"){
+                        <div><i class="bi bi-gender-female"></i>@ViewBag.UserDetails.Gender</div>
+                    }else{
+                        <div><i class="bi bi-gender-male"></i>@ViewBag.UserDetails.Gender</div>
+                    }
+                        }
+                  </div>
+               </div>
+
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Opportunities</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-award"></i>@ViewBag.UserDetails.Works.Count</div>
+                 </div>
+               </div>
+
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Total Hours</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-clock"></i>@ViewBag.UserDetails.NumberOfHours</div>
+                 </div>
+               </div>
+
+               
+               
+
+              </div>
+              <!-- End sidebar categories-->
+            
+              
+                
+
+
+              </div><!-- End sidebar recent posts-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->

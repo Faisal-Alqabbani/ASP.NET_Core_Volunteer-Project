@@ -1,0 +1,38 @@
+@model Login;
+<partial name="_MainNav"/>
+
+<div class="container my-2 w-50  mt-5 d-flex align-items-center justify-content-center flex-column">
+<h1 class="text-center brand display-1">
+        Organization Login
+    </h1>
+<div class="row shadow pt-3 px-3 w-50 ">
+<section class="p-3">
+    <form asp-action="LoginForm" asp-controller="Orgnization" class="my-3">
+
+            <div class='form-group my-2'>
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email" >
+                <span class='text-danger' asp-validation-for="Email"></span>
+            </div>
+             <div class='form-group my-2'>
+                <label asp-for="Password"></label>
+                <input class="form-control" asp-for="Password" >
+                <span class='text-danger' asp-validation-for="Password"></span>
+            </div>
+         <div>   
+            <button class='btn button my-2'>Login</button> 
+        </div>
+         <p>You don't have an account? <a href="/org/reg">Register Now</a></p>
+    </form>
+    <div class="d-flex justify-content-center align-item-center">
+    <img src="~/assets/img/org_login.svg" style="width:350px; height:200px"/>
+    </div>
+    
+    
+</section>
+<!-- here add pic -->
+@* <div class="col-md-6 d-flex align-items-end con">
+    
+<div> *@
+</div>
+</div>

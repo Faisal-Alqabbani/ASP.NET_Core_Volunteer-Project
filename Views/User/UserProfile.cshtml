@@ -1,0 +1,128 @@
+@model User;
+<partial name="_UserNav" />
+<div class="container">
+<h1 class="h1">@Model.FirstName's Profile</h1>
+
+
+
+<section id="counts" class="counts ">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-alarm"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end=@Model.NumberOfHours data-purecounter-duration="1" class="purecounter"></span>
+                <p>Hours Of Support</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile" style="color: #ee6c20;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end=@Model.Works.Count data-purecounter-duration="1" class="purecounter"></span>
+                <p>Opportunities</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-building" style="color: #bb0852;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Organization</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+<div class="row shadow my-3">
+<section class="p-3 col-md-5">
+    <form asp-action="UpdateForm" asp-controler="User" class="h-100" id="updateForm">
+    <div class="row my-2">
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="FirstName"></label>
+                <input class="form-control" asp-for="FirstName" >
+                <span class='text-danger' asp-validation-for="FirstName"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="LastName"></label>
+                <input class="form-control" asp-for="LastName" >
+                <span class='text-danger' asp-validation-for="LastName"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group my-2">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email" >
+                <span class='text-danger' asp-validation-for="Email"></span>
+    </div>
+ 
+   
+    <div class='form-group'>
+                <label asp-for="DoB"></label>
+                <input class="form-control" asp-for="DoB" >
+                <span class='text-danger' asp-validation-for="DoB"></span>
+            </div>
+    <div class="row my-2">
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="Country"></label>
+                <input class="form-control" asp-for="Country" >
+                <span class='text-danger' asp-validation-for="Country"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class='form-group'>
+                <label asp-for="City"></label>
+                <input class="form-control" asp-for="City" >
+                <span class='text-danger' asp-validation-for="City"></span>
+            </div>
+        </div>
+    </div>
+        <div class="form-group my-2">
+                <label asp-for="Phone"></label>
+                <input class="form-control" asp-for="Phone" >
+                <span class='text-danger' asp-validation-for="Phone"></span>
+    </div>
+
+    <label>Gender</label> <br>
+    <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio1" value="male">
+            <label class="form-check-label" for="inlineRadio1">Male</label>
+    </div>
+        <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio2" value="female">
+            <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+        <div>
+        <button class='btn button my-2'>Update</button> 
+        </div>
+      
+       
+
+    </form>
+    
+</section>
+<!-- here add pic -->
+<div class="col-md-6 d-flex align-items-end con">
+
+    <img src="~/assets/img/update.svg" style="width:700px; "/>
+<div>
+</div>
+
+
+
+</div>

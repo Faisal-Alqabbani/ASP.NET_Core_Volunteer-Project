@@ -1,0 +1,71 @@
+@model Organization;
+<partial name="_MainNav"/>
+
+<div class="container my-2">
+ <h1 class="text-center brand display-1">
+        Organizations Registration
+    </h1>
+<div class="row shadow">
+<section class="p-3 col-md-5">
+    <form asp-action="RegisterForm" asp-controller="Organization" class="h-100">
+    <div class="row my-2">
+        <div class='form-group'>
+            <label asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" >
+            <span class='text-danger' asp-validation-for="Name"></span>
+        </div>
+    </div>
+        <div class='form-group'>
+            <label asp-for="Description"></label>
+            <textarea class="form-control" asp-for="Description" ></textarea>
+            <span class='text-danger' asp-validation-for="Description"></span>
+        </div>
+        <div class='form-group'>
+                <label asp-for="FoundingDate"></label>
+                <input class="form-control" asp-for="FoundingDate" >
+                <span class='text-danger' asp-validation-for="FoundingDate"></span>
+    </div>
+    <div class='form-group'>
+                <label asp-for="Address"></label>
+                <input class="form-control" asp-for="Address" >
+                <span class='text-danger' asp-validation-for="Address"></span>
+    </div>
+    <div class="form-group my-2">
+                <label asp-for="Phone"></label>
+                <input class="form-control" asp-for="Phone" >
+                <span class='text-danger' asp-validation-for="Phone"></span>
+    </div>
+    <div class="form-group my-2">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" >
+        <span class='text-danger' asp-validation-for="Email"></span>
+    </div>
+    
+    <div class='form-group my-2'>
+            <label asp-for="password"></label>
+            <input class="form-control" asp-for="password" >
+            <span class='text-danger' asp-validation-for="password"></span>
+    </div>
+
+    <div class='form-group my-2'>
+        <label asp-for="Confirm"></label>
+        <input class="form-control" asp-for="Confirm" >
+        <span class='text-danger' asp-validation-for="Confirm"></span>
+    </div>    
+        <div>
+        <button class='btn button my-2'>Register</button> 
+        </div>
+      
+       
+
+    </form>
+    
+</section>
+<!-- here add pic -->
+<div class="col-md-6 d-flex align-items-end con">
+<h3 class="cout">“Life's most persistent and urgent question is, 'What are you doing for others?'”<span style="font-size:16px">Martin Luther King.</span></h3>
+
+    <img src="~/assets/img/org_Reg.svg" style="width: 700px; height: 500px; margin-left:50px"/>
+<div>
+</div>
+</div>

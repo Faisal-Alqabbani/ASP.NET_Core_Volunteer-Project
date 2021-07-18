@@ -1,0 +1,57 @@
+@model User;
+<!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center">
+        <span>Geeks For Charity</span>
+      </a>
+      
+      <nav id="navbar" class="navbar">
+      <ul>
+        @{
+          if(Model.IsAdmin == true){
+                <li><a href="/admin">Admin Dashboard</a></li>
+          }
+        }
+              <li class="dropdown"><a href=""><span>Categories</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/Health/opportunities">Health</a></li>
+              <li><a href="/Entertainment/opportunities">Entertainment</li></a>
+              <li><a href="/Community/opportunities">Community</a></li>
+              <li><a href="/Caltural/opportunities">Caltural</a></li>
+              <li><a href="/Organization/opportunities">Organization</a></li>
+              <li><a href="/Housing/opportunities">Housing</a></li>
+              <li><a href="/Training/opportunities">Training</a></li>
+            </ul>
+          </li>
+        <ul>
+          <li><a href="/search">Search</a></li>
+          <li><a href="/user/orgnization">Organizations</a></li>
+          <li><a href="/user/dashboard">Opportunities</a></li>
+          @{
+            if(Model.FirstName != null){
+            <li class="dropdown"><a href="#"><span>@Model.FirstName</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/user/profile">Profile</a></li>
+              <li><a href="/user/myopportunity">My Opportunities</a></li>
+              <li><a href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+            }else{
+                 <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/user/login">Login As Volunteer</a></li>
+              <li><a href="/org/login">Login As Organization</a></li>
+            </ul>
+            </li>
+            }
+          }
+        
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

@@ -1,0 +1,59 @@
+@model List<Work>;
+@if(ViewBag.LoggedOrg != null){ 
+  <partial name="_OrgNav"  model=@ViewBag.OrgObj/>
+}else{
+  <partial name="_UserNav" model=ViewBag.UserObj/>
+}
+<section class="breadcrumbs">
+      <div class="container">
+
+    <h2 class="text-center"> @ViewBag.CatName Opportunities</h2>
+
+      </div>
+
+    </section><!-- End Breadcrumbs -->
+<!-- ======= Recent Blog Posts Section ======= -->
+    @{
+      if(Model.Count == 0){
+         <div class="empty" data-aos="fade-up" data-aos-delay="400">
+           <img src="~/assets/img/empty.svg" alt="Empty" />
+           <h1 class="h1">No Result Found </h1>
+         </div>
+      }
+    }
+   
+    <section id="recent-blog-posts" class="recent-blog-posts">
+      <div class="container" data-aos="fade-up">
+      
+        <div class="row">
+        @foreach(var Work in  Model){
+        <div class="col-lg-4 my-3">
+            <div class="post-box">
+              <div class="post-img">
+              <span class="title">@Work.CreatedBy.Name</span>
+              <img src="~/image/@Work.Picture" class="img-fluid" alt="">
+              </div>   
+              <h3 class="post-title">@Work.Name</h3>
+            <span class="post-date d-flex justify-content-between">
+              <div><i class="bi bi-calendar-event"></i>@Work.StartDate.ToString("dd MMMM") - @Work.EndDate.ToString("dd MMMM")</div>
+              <div><i class="bi bi-clock"></i>@Work.NumberOfHours hours</div>
+              </span>
+              <span class="post-date d-flex justify-content-between">
+              <div><i class="bi bi-geo-alt-fill"></i>@Work.Country, @Work.City</div>
+              <div><i class="bi bi-people-fill"></i>@Work.NumberOfVolunteers People</div>
+              </span>
+              <div class="d-flex justify-content-between align-items-end">
+         
+              <a href="/opportunity/@Work.WorkId" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+              
+            </div>
+          </div>
+        }
+          
+
+        </div>
+
+      </div>
+
+    </section>

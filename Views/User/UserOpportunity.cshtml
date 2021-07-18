@@ -1,0 +1,193 @@
+@model Work;
+@if(ViewBag.LoggedOrg != null){ 
+  <partial name="_OrgNav"  model=@ViewBag.OrgObj />
+}else{
+  <partial name="_UserNav" model=ViewBag.UserObj/>
+}
+<!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+    <h2>@Model.Name</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+<main id="main">
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+          <div class="opp-img mb-3">
+          <img src="~/image/@Model.Picture"/>
+          </div>
+          @if(ViewBag.LoggedOrg != null && ViewBag.LoggedUser == null &&  ViewBag.LoggedOrg == Model.CreatedBy.OrganizationId){ 
+          <div class="row">
+          <h2 class=" col-md-10 h1">@Model.Name</h2>
+          <div class="col-md-1 d-flex justify-content-end">
+            <h3><a  href="/edit/@Model.WorkId"><i class="bi bi-pencil-square"></i></a></h3>
+          </div>
+          <div class="col-md-1 d-flex justify-content-start">
+            <h3><a  href="/deleteProject/@Model.WorkId"><i class="bi bi-trash text-danger"></i></a></h3>
+          </div>
+          </div>
+          } else {
+          <h2 class="h1">@Model.Name</h2>
+          }
+            <span class="post-date d-flex">
+              <div class="opp-cat">@Model.Category</div>
+              </span>
+              <hr />
+          <div class="opp-desc">
+            <p>@Model.Description</p>
+          </div>
+          <div class="location">
+          <h2 class="h2 my-1">Location</h2>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2s150%20Park%20Row%2C%20New%20York%2C%20NY%2010007%2C%20USA!5e0!3m2!1sen!2sbg!4v1579767901424!5m2!1sen!2sbg" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </div>
+          
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+              
+              <h2 class="sidebar-subject"><i class="bi bi-building"></i>@Model.CreatedBy.Name</h2>
+              <hr />
+
+              <h3 class="sidebar-title">Date Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Start Date</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-calendar-event"></i>@Model.StartDate.ToString("dd MMMM")</div>
+                 </div>
+                </div>
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">End Date</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-calendar-event"></i>@Model.EndDate.ToString("dd MMMM")</div>
+                 </div>
+               </div>
+               <hr />
+               <h3 class="sidebar-title">More Information</h3>
+              <div class="sidebar-item categories">
+               <div class="row ">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Volunteers</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-people-fill"></i>@Model.NumberOfVolunteers</div>
+                 </div>
+                </div>
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Minmum Age</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-person-plus"></i>@Model.MinAge</div>
+                 </div>
+               </div>
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Hours</div>
+                 </div>
+                 <div class="col-md-6">
+                   <div ><i class="bi bi-clock"></i>@Model.NumberOfHours</div>
+                 </div>
+               </div>
+               <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Gender</div>
+                 </div>
+                 <div class="col-md-6">
+                 @{
+                    if(Model.Gender == "female"){
+                        <div><i class="bi bi-gender-female"></i>@Model.Gender</div>
+                    }else if (Model.Gender == "male"){
+                        <div><i class="bi bi-gender-male"></i>@Model.Gender</div>
+                    }else{
+                        <div><i class="bi bi-gender-ambiguous"></i>@Model.Gender</div>
+                    }
+                        }
+                  </div>
+               </div>
+
+                <div class="row my-2">
+                 <div class="col-md-6">
+                   <div class="sidebar-info mx-2">Status</div>
+                 </div>
+                 <div class="col-md-6">
+                   @{
+                     if(Model.Workers.Count < Model.NumberOfVolunteers){
+                       <div class="text-success"><i class="bi bi-emoji-smile"></i>Available</div>
+                     }else
+                     {
+                       <div style="color:darkorange;"><i class="bi bi-emoji-frown" style="color:darkorange;"></i>Full</div>
+                     }
+                   }
+                   
+                 </div>
+               </div>
+
+              </div><!-- End sidebar categories-->
+
+              <h3 class="sidebar-title">Skills</h3>
+              <div class="sidebar-info mx-2">@Model.Skills</div>
+              
+              </div><!-- End sidebar tags-->
+            @if(ViewBag.LoggedOrg == null){
+              @if(Model.Workers.Count >= Model.NumberOfVolunteers && !Model.Workers.Any(u=>u.UserId == ViewBag.LoggedUser)){
+                
+              }
+                
+              else if(ViewBag.LoggedUser == null){
+                <a class="btn button btn-lg w-100" href="/user/login">Join to this Opportunity</a>
+              }
+              else if(!Model.Workers.Any(u=>u.UserId == ViewBag.LoggedUser)){
+                <a class="btn button btn-lg w-100" href="/add/opportunity/@Model.WorkId">Join to this Opportunity</a>
+              } 
+              else{
+                <a class="btn button btn-lg w-100" href="/remove/opportunity/@Model.WorkId">Unjoin</a>
+              }
+            }           
+            
+            </div><!-- End sidebar -->          
+            @if(ViewBag.LoggedOrg != null && ViewBag.LoggedUser == null && ViewBag.LoggedOrg == Model.CreatedBy.OrganizationId){  
+
+            <div class="sidebar">
+              
+              <h2 class="sidebar-subject"><i class="bi bi-people-fill"></i> Volunteers List</h2>
+              <hr />
+
+              @foreach(var user in Model.Workers){
+                <div class="row">
+                <p class="col-md-10"><strong>@user.User.FirstName @user.User.LastName </strong></p>
+                <h5 class="col-md-2"><a href="/deletePerson/@user.UserId/@Model.WorkId"><i class="text-danger bi bi-person-dash"></i></a></h5>
+                </div>
+                <div class="d-flex justify-content-center">
+                <p ><i class="bi bi-telephone"></i> @user.User.Phone  |  <i class="bi bi-envelope"></i> @user.User.Email</p>
+                </div>
+                <hr />
+              }
+            
+            </div><!-- End sidebar -->
+          }
+
+          </div><!-- End blog sidebar -->
+
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main>

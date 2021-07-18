@@ -1,0 +1,25 @@
+ @model Organization;
+ <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center">
+        <span>Geeks For Charity</span>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="/user/dashboard">Opportunities</a></li>
+          <li><a class="nav-link scrollto" href="/orgnaization/@Model.OrganizationId">My Projects</a></li>
+          <li class="dropdown"><a href="#"><span>@Model.Name</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/org/profile">Profile</a></li>
+              <li><a href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

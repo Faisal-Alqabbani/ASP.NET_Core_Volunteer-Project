@@ -1,0 +1,91 @@
+@model List<Work>;
+@if(ViewBag.LoggedOrg != null){ 
+  <partial name="_OrgNav"  model=@ViewBag.OrgObj />
+}else{
+  <partial name="_UserNav" model=ViewBag.UserObj/>
+}
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+    <h2>Search Result</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+         @if(Model.Count == 0){
+         <div class="empty" style="width: 65%" data-aos="fade-up" data-aos-delay="400">
+           <img src="~/assets/img/empty.svg" alt="Empty" />
+           <h1 class="h1">No @ViewBag.Word Result found!</h1>
+         </div>
+         } else {
+          <div class="col-lg-8 entries">
+            @foreach (var item in Model)
+            {
+             <article class="entry">
+
+              <div class="entry-img">
+                <img src="~/image/@item.Picture" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="blog-single.html">@item.Name</a>
+              </h2>
+
+              <div class="entry-meta"> 
+                <ul>
+                  @* <!-- <li class="d-flex align-items-center"><i class="bi bi-building"></i>@Model.CreatedBy.Name</li> --> *@
+                  <li class="d-flex align-items-center"><i class="bi bi-geo-alt-fill"></i> @item.Country, @item.City</li>
+                  <li class="d-flex align-items-center"><i class="bi bi-people-fill"></i> @item.NumberOfVolunteers Volunteers</li>
+                </ul>
+              </div>
+              <div class="entry-meta"> 
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-calendar-event"></i> @item.StartDate.ToString("dddd, dd MMMM yyyy") - @item.EndDate.ToString("dddd, dd MMMM yyyy") </li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> @item.NumberOfHours Volunteering hours</li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                    @item.Description
+                  Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
+                  Doloremque est saepe laborum aut. Ipsa cupiditate ex harum at recusandae nesciunt. Ut dolores velit.
+                </p>
+                <div class="read-more">
+                  <a href="opportunity/@item.WorkId">Read More</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+            }
+
+          </div><!-- End blog entries list -->
+        }
+          <div class="col-lg-4">
+              
+            <div class="sidebar my-5 ">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form asp-action="Search" asp-controller="Orgnization" method="post">
+                  <input type="text" name="word">
+                  <button><i class="bi bi-search" style="color:white"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->

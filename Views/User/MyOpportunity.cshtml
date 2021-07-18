@@ -1,0 +1,47 @@
+@model User;
+
+<partial name="_UserNav" model=Model/>
+
+<section class="breadcrumbs">
+      <div class="container">
+
+    <h2 class="text-center">My Opportunities</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+<!-- ======= Recent Blog Posts Section ======= -->
+    <section id="recent-blog-posts" class="recent-blog-posts">
+      <div class="container" data-aos="fade-up">
+      
+        <div class="row">
+        @foreach(var work in  Model.Works){
+        <div class="col-lg-4">
+            <div class="post-box">
+              <div class="post-img">
+              <span class="title">@work.Work.CreatedBy.Name</span>
+              <img src="~/image/@work.Work.Picture" class="img-fluid" alt="" asp->
+              </div>   
+              <h3 class="post-title">@work.Work.Name</h3>
+            <span class="post-date d-flex justify-content-between">
+              <div><i class="bi bi-calendar-event"></i>@work.Work.StartDate.ToString("dd MMMM") - @work.Work.EndDate.ToString("dd MMMM")</div>
+              <div><i class="bi bi-clock"></i>@work.Work.NumberOfHours hours</div>
+              </span>
+              <span class="post-date d-flex justify-content-between">
+              <div><i class="bi bi-geo-alt-fill"></i>@work.Work.Country, @work.Work.City</div>
+              <div><i class="bi bi-people-fill"></i>@work.Work.NumberOfVolunteers People</div>
+              </span>
+              <div class="d-flex justify-content-between align-items-end">
+         
+              <a href="/opportunity/@work.Work.WorkId" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+              
+            </div>
+          </div>
+        }
+          
+
+        </div>
+
+      </div>
+
+    </section>

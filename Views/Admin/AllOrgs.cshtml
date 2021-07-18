@@ -1,0 +1,33 @@
+<partial name="_UserNav" model=ViewBag.UserObj/>
+
+<!-- ======= Breadcrumbs ======= -->
+
+   <!-- End Breadcrumbs -->
+<div class="container">
+   <header class="section-header mt-4">
+          <p>All Organizations</p>
+        </header>
+    <table>
+    <thead>
+        <tr>
+        <th >Organization Id</th>
+        <th >Name</th>
+        <th >Email</th>
+        <th >Phone</th>
+        <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in ViewBag.AllOrgs){
+        <tr>
+        <td>@item.OrganizationId</td>
+        <td><a href="/orgnaization/@item.OrganizationId">@item.Name</a></td>
+        <td><a href="mailto:@item.Email">@item.Email</a></td>
+        <td>@item.Phone</td>
+        <td><a href="/admin/delete/org/@item.OrganizationId" ><i class="bi bi-trash text-danger"></i></a></td>
+        </tr>
+    }
+        
+    </tbody>
+    </table>
+</div>
